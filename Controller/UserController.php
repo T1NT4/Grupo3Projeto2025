@@ -1,5 +1,5 @@
 <?php
-require_once  'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\Model\UserModel.php';
+require_once  '/../Model/UserModel.php';
 
 class UserController {
     public function login() {
@@ -9,14 +9,14 @@ class UserController {
             $user = new UserModel();
 
             if ($user->login($username, $password)) {
-                header("Location: index.php");
+                header("Location: /index.php");
                 exit;
             } else {
                 $error = "Usuário ou senha incorretos.";
-                require_once  '/../view/login.php';
+                require_once  '/../View/login.php';
             }
         } else {
-            require_once  '/../view/login.php';
+            require_once  '/../View/login.php';
         }
     }
 
@@ -27,14 +27,14 @@ class UserController {
             $user = new UserModel();
 
             if ($user->register($username, $password)) {
-                header("Location: login.php");
+                header("Location: /View/login.php");
                 exit;
             } else {
                 $error = "Erro ao cadastrar usuário.";
-                require_once  '/../view/register.php';
+                require_once  '/../View/register.php';
             }
         } else {
-            require_once  '/../view/register.php';
+            require_once  '/../View/register.php';
         }
     }
 }

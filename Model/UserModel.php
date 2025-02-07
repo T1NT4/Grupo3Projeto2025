@@ -1,5 +1,5 @@
 <?php
-require_once 'C:/Turma2/xampp/htdocs/Grupo3Projeto2025/config.php';
+require_once '/../config.php';
 
 class UserModel {
     public function register($username, $password) {
@@ -16,6 +16,7 @@ class UserModel {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
+            session_start();
             $_SESSION['user'] = $user['username'];
             return true;
         }
