@@ -1,20 +1,75 @@
 <?php
-require_once __DIR__ . "/../Controller/UserController.php";
-require_once __DIR__ . "/../config.php";
+include_once __DIR__ . "/Controller/UserController.php";
+include_once __DIR__ . "/config.php";
 
+$Controller = new UserController($pdo);
 
+if (!empty($_POST)) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $currentdatetime = new DateTime('now');
+    $data_de_registro = $currentdatetime->format("Y-m-d H:i:s" . ".000000");
 
+    $imagem_arquivo = $_FILES['foto-perfil'];
+    include __DIR__ . '/upload-image.php';
 
-$controller = new UserController();
-$controller->register();
+    $registred = $Controller->register($username, $password, $data_de_registro);
+    $error_code = 0;
+
+    if ($registred && $error_code == null) {
+        header("Location: login.php");
+    }
+}
 ?>
 
-<h2>Register</h2>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Captura_de_tela_2024-11-11_140326-removebg-preview (1).png" type="image/png">
+    <title>Hobbly - registrar conta</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+    <header>
+        <h1>Reverdecer</h1>
+    </header>
+    <section>
+        <div>
+            <form method="POST" enctype="multipart/form-data">
+                <input required type="text" name="username" placeholder="nome de usuário">
+                <input required type="password" name="password" placeholder="senha">
+                <button type="submit">Cadastrar Conta</button>
+            </form>
+        </div>
+
+        
+
+        <div>
+            <hr>
+            <p>OU</p>
+            <hr>
+        </div>
 
 
+        <?php
+        if (isset($registred) && !$registred) {
+            echo "<p>esse usuário ja existe! tente outro nome de usuário.</p>";
+        }
+        if (isset($error_code) && $error_code != null) {
+            echo $error_code;
+        }
+        ?>
+        <p>
+            Já tem uma conta?
+        <div class="outro"><button><a href="login.php">Faça login</a></button></div>
+        </p>
+    </section>
 
-<form method="POST" action="">
-    <input type="text" name="username" placeholder="Usuário" required>
-    <input type="password" name="password" placeholder="Senha" required>
-    <button type="submit">Criar Conta</button>
-</form>
+    
+</body>
+
+</html>

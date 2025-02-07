@@ -1,24 +1,30 @@
 <?php
-require_once __DIR__ . "/../Controller/UserController.php";
-require_once __DIR__ . "/../config.php";
 
-
-
-
-$controller = new UserController();
-$controller->login();
-?>
-
-<h2>Login</h2>
-
-
-
-
-<form method="POST" action="#">
-    <input type="text" name="username" placeholder="Usuário" required>
-    <input type="password" name="password" placeholder="Senha" required>
-    <button type="submit">Entrar</button>
-</form>
-
-<a href="/../View/register.php">Criar Conta</a>
-
+class UserModel{
+    private $pdo;
+    function __construct($pdo){
+        $this->pdo = $pdo;
+    }
+    function register($username,$password,$data_de_registro){
+        $sql = "SELECT * FROM users WHERE username = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$username]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(empty($results)){
+            $sql = "INSERT INTO User(username,password, data_de_registro) VALUES (?,?,?)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$username,$password,$data_de_registro]);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function login($username, $password){
+        $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$username,$password]);
+        $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
+    }
+}

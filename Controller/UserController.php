@@ -1,49 +1,17 @@
 <?php
-require_once __DIR__ . '/../Model/UserModel.php';
+require_once __DIR__.'/../model/UserModel.php';
 
-class UserController
-{
-    public function login()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $user = new UserModel();
+class UserController{
+    private $UserModel;
 
-            if ($user->login($username, $password)) {
-                header("Location: /Grupo3Projeto2025/index.php");
-                exit;
-            } else {
-
-                
-                header("Location: /Grupo3Projeto2025/View/login.php");
-                exit;
-            }
-        } else {
-
-            header("Location: /Grupo3Projeto2025/View/login.php");
-            exit;
-        }
+    function __construct($pdo){
+        $this->UserModel = new UserModel($pdo);
+    }
+    function register($username,$password,$data_de_registro){
+        return $this->UserModel->register($username, $password,$data_de_registro);
+    }
+    public function login($username, $password){
+        return $this->UserModel->login($username,$password);
     }
 
-    public function register()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $user = new UserModel();
-
-            if ($user->register($username, $password)) {
-                header("Location: /Grupo3Projeto2025/View/login.php");
-                exit;
-            } else {
-         header("Location: /Grupo3Projeto2025/View/register.php");
-                exit;
-            }
-        } else {
-
-            header("Location: /Grupo3Projeto2025/View/register.php");
-            exit;
-        }
-    }
 }
