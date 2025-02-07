@@ -15,8 +15,7 @@ class UserController
                 exit;
             } else {
 
-                session_start();
-                $_SESSION['error'] = "Usuário ou senha incorretos.";
+                
                 header("Location: /Grupo3Projeto2025/View/login.php");
                 exit;
             }
@@ -38,10 +37,7 @@ class UserController
                 header("Location: /Grupo3Projeto2025/View/login.php");
                 exit;
             } else {
-
-                session_start();
-                $_SESSION['error'] = "Erro ao cadastrar usuário.";
-                header("Location: /Grupo3Projeto2025/View/register.php");
+         header("Location: /Grupo3Projeto2025/View/register.php");
                 exit;
             }
         } else {

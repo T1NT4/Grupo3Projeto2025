@@ -21,7 +21,7 @@ class UserModel
 
 
         try {
-            $stmt = $pdo->prepare("INSERT INTO Reverdecer (username, password) VALUES (?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
             return $stmt->execute([$username, $hashedPassword]);
         } catch (Exception $e) {
 
@@ -45,17 +45,14 @@ class UserModel
 
         try {
 
-            $stmt = $pdo->prepare("SELECT * FROM Reverdecer WHERE username = ?");
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
             $stmt->execute([$username]);
             $user = $stmt->fetch();
 
 
             if ($user && password_verify($password, $user['password'])) {
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
-                $_SESSION['user'] = $user['username'];
-                return true;
+              
+                             return true;
             }
         } catch (Exception $e) {
 
