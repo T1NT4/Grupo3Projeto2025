@@ -10,8 +10,6 @@ if (!empty($_POST)) {
     $currentdatetime = new DateTime('now');
     $data_de_registro = $currentdatetime->format("Y-m-d H:i:s" . ".000000");
 
-    $imagem_arquivo = $_FILES['foto-perfil'];
-    include __DIR__ . '/upload-image.php';
 
     $registred = $Controller->register($username, $password, $data_de_registro);
     $error_code = 0;
@@ -28,8 +26,8 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="Captura_de_tela_2024-11-11_140326-removebg-preview (1).png" type="image/png">
-    <title>Hobbly - registrar conta</title>
+    
+    <title>Reverdecer - registrar</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 
