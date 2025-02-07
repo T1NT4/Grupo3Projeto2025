@@ -1,5 +1,5 @@
 <?php
-require_once  '/../Model/UserModel.php';
+require_once __DIR__ . '/../Model/UserModel.php';
 
 class UserController {
     public function login() {
@@ -9,14 +9,19 @@ class UserController {
             $user = new UserModel();
 
             if ($user->login($username, $password)) {
-                header("Location: /index.php");
+                header("Location: index.php"); 
                 exit;
             } else {
-                $error = "Usuário ou senha incorretos.";
-                require_once  '/../View/login.php';
+                // Armazenar erro na sessão para mostrar na página
+                session_start();
+                $_SESSION['error'] = "Usuário ou senha incorretos.";
+                header("Location: /View/login.php"); 
+                exit;
             }
         } else {
-            require_once  '/../View/login.php';
+            // Redirecionamento para o login, sem erros
+            header("Location: /View/login.php"); 
+            exit;
         }
     }
 
@@ -30,11 +35,16 @@ class UserController {
                 header("Location: /View/login.php");
                 exit;
             } else {
-                $error = "Erro ao cadastrar usuário.";
-                require_once  '/../View/register.php';
+                // Armazenar erro na sessão para mostrar na página de registro
+                session_start();
+                $_SESSION['error'] = "Erro ao cadastrar usuário.";
+                header("Location: /View/register.php");  
+                exit;
             }
         } else {
-            require_once  '/../View/register.php';
+            // Redirecionamento para o registro, sem erros
+            header("Location: /View/register.php");
+            exit;
         }
     }
 }
