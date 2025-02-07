@@ -48,7 +48,7 @@ if (!empty($_POST)) {
                 <input type="number">Peso</input>
                 <input type="number">Empresa responsavel</input>
                 <input type="text">Endereço do residuo</input>
-                <input type="datetimer">Data de requisição de retiramento do residuo</input>
+                <input type="date">Data de requisição de retiramento do residuo</input>
                 <button type="submit">Cadastrar Residuo</button>
             </form>
         </div>
