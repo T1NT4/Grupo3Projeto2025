@@ -1,6 +1,6 @@
 <?php
-include_once __DIR__."/Controller/UserController.php";
-include_once __DIR__."/config.php";
+include_once 'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\Controller\UserController.php';
+include_once 'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\config.php';
 
 $Controller = new UserController($pdo);
 
@@ -14,7 +14,7 @@ if(!empty($_POST)){
         // faz um cookie para marcar o login do usuário na máquina dele por 24 horas
         setcookie("id_user",$logged_in["id_user"], time()+60*60*24, "/");
         
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
 }
 ?>

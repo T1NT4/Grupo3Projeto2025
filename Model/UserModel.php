@@ -11,7 +11,7 @@ class UserModel{
         $stmt->execute([$username]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(empty($results)){
-            $sql = "INSERT INTO User(username,password, data_de_registro) VALUES (?,?,?)";
+            $sql = "INSERT INTO users(username,password, data_de_registro) VALUES (?,?,?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$username,$password,$data_de_registro]);
             return true;
