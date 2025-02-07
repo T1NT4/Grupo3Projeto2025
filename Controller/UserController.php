@@ -11,18 +11,18 @@ class UserController
             $user = new UserModel();
 
             if ($user->login($username, $password)) {
-                header("Location: index.php");
+                header("Location: /Grupo3Projeto2025/index.php");
                 exit;
             } else {
 
                 session_start();
                 $_SESSION['error'] = "Usuário ou senha incorretos.";
-                header("Location: /View/login.php");
+                header("Location: /Grupo3Projeto2025/View/login.php");
                 exit;
             }
         } else {
 
-            header("Location: /View/login.php");
+            header("Location: /Grupo3Projeto2025/View/login.php");
             exit;
         }
     }
@@ -35,18 +35,18 @@ class UserController
             $user = new UserModel();
 
             if ($user->register($username, $password)) {
-                header("Location: /View/login.php");
+                header("Location: /Grupo3Projeto2025/View/login.php");
                 exit;
             } else {
 
                 session_start();
                 $_SESSION['error'] = "Erro ao cadastrar usuário.";
-                header("Location: /View/register.php");
+                header("Location: /Grupo3Projeto2025/View/register.php");
                 exit;
             }
         } else {
 
-            header("Location: /View/register.php");
+            header("Location: /Grupo3Projeto2025/View/register.php");
             exit;
         }
     }

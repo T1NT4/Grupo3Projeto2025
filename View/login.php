@@ -25,4 +25,4 @@ if (isset($_SESSION['error'])) {
     <button type="submit">Entrar</button>
 </form>
 
-<a href="/Grupo3Projeto2025/View/register.php">Criar Conta</a>
+<a href="/../View/register.php">Criar Conta</a>
