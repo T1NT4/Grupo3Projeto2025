@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config.php';
+require_once 'C:/Turma2/xampp/htdocs/Grupo3Projeto2025/config.php';
 
 class UserModel {
     public function register($username, $password) {

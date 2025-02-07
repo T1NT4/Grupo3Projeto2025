@@ -1,5 +1,5 @@
 <?php
-require_once  '/../models/User.php';
+require_once  'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\Model\UserModel.php';
 
 class UserController {
     public function login() {
@@ -13,10 +13,10 @@ class UserController {
                 exit;
             } else {
                 $error = "Usuário ou senha incorretos.";
-                require_once  '/../views/login.php';
+                require_once  '/../view/login.php';
             }
         } else {
-            require_once  '/../views/login.php';
+            require_once  '/../view/login.php';
         }
     }
 
@@ -31,10 +31,10 @@ class UserController {
                 exit;
             } else {
                 $error = "Erro ao cadastrar usuário.";
-                require_once  '/../views/register.php';
+                require_once  '/../view/register.php';
             }
         } else {
-            require_once  '/../views/register.php';
+            require_once  '/../view/register.php';
         }
     }
 }
