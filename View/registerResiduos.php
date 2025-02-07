@@ -55,11 +55,7 @@ if (!empty($_POST)) {
 
         
 
-        <div>
-            <hr>
-            <p>OU</p>
-            <hr>
-        </div>
+        
 
 
         <?php
