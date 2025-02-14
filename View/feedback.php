@@ -1,11 +1,11 @@
 <?php
-include_once '../config.php'; 
+include_once '/../config.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mensagem = trim($_POST['mensagem']);
+    $mensagem = ($_POST['mensagem']);
 
     if (!empty($mensagem)) {
-        $sql = "INSERT INTO feedbacks (mensagem) VALUES (:mensagem)";
+        $sql = "INSERT INTO feedbacks";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':mensagem', $mensagem);
 
