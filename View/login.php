@@ -14,7 +14,7 @@ if (!empty($_POST)) {
     $_SESSION['user_id'] = $logged_in["id"];
 
     if (!empty($logged_in)) {
-        // faz um cookie para marcar o login do usuário na máquina dele por 24 horas
+       
 
 
         header("Location: ../index.php");
@@ -59,7 +59,6 @@ if (!empty($_POST)) {
         if (isset($logged_in) && empty($logged_in)) {
             echo "usuário ou senha estão errados, tente novamente!";
         } else {
-            header("Location: view/user.php");
         }
         ?>
     </section>
