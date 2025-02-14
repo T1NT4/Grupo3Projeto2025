@@ -1,19 +1,22 @@
 <?php
+session_start();
 include_once 'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\Controller\UserController.php';
 include_once 'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\config.php';
 
 $Controller = new UserController($pdo);
 
-if(!empty($_POST)){
+if (!empty($_POST)) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     $logged_in = $Controller->login($username, $password);
 
-    if(!empty($logged_in)){
+    $_SESSION['user_id'] = $logged_in["id"];
+
+    if (!empty($logged_in)) {
         // faz um cookie para marcar o login do usuário na máquina dele por 24 horas
-        setcookie("id_user",$logged_in["id_user"], time()+60*60*24, "/");
-        
+
+
         header("Location: ../index.php");
     }
 }
@@ -21,42 +24,47 @@ if(!empty($_POST)){
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    
+
     <title>Pagina de login</title>
 </head>
+
 <body>
-<header class="middle">
-        <div><img src="Captura_de_tela_2024-11-11_140326-removebg-preview (1).png" alt=""></div>
+    <header class="">
+
         <h1>Reverdecer</h1>
     </header>
 
     <section class="marginend">
         <div class="login">
-    <form method="POST">
-        <input required type="text" name="username" placeholder="nome de usuário">
-        <input required type="password" name="password" placeholder="senha">
-        
-        <button type="submit">Login</button>
-    </form>
-    <p>
+            <form method="POST">
+                <input required type="text" name="username" placeholder="nome de usuário">
+                <input required type="password" name="password" placeholder="senha">
 
-    </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>
+
+        </div>
         Não tem uma conta? registre uma </p>
-    <div class="outro"><button><a href="register.php">aqui!</a></button></div>
-    
+        <div class="outro"><button><a href="register.php">aqui!</a></button></div>
 
 
-    <?php
-    if(isset($logged_in) && empty($logged_in)){
-        echo "usuário ou senha estão errados, tente novamente!";
-    }
-    ?>
+
+        <?php
+        if (isset($logged_in) && empty($logged_in)) {
+            echo "usuário ou senha estão errados, tente novamente!";
+        } else {
+            header("Location: view/user.php");
+        }
+        ?>
     </section>
 
-    
+
 </body>
+
 </html>

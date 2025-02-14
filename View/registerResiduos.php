@@ -1,25 +1,54 @@
 <?php
-include_once  'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\Controller\ResiduoController.php';
-include_once 'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\config.php';
+include_once '../config.php'; // Certifique-se de que está pegando o arquivo corretamente
 
-$Controller = new ResiduoController($pdo);
+// Verifique se o usuário está logado e se a sessão do usuário existe
+session_start();
+$user_id = $_SESSION['user_id'] ?? null;  // Garantir que user_id é recuperado da sessão
 
-if (!empty($_POST)) {
-    $tipo_residuo = $_POST['tipo_residuo'];
-    $peso = $_POST['peso'];
-    $empresa_responsavel = $_POST['empresa_responsavel'];
-    $endereco_residuo = $_POST['endereco_residuo'];
-    $data_req =$_POST['data_req'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Coleta os dados enviados via POST
+    $tipo_residuo = $_POST['tipo_residuo'] ?? null;
+    $peso = $_POST['peso'] ?? null;
+    $empresa_responsavel = $_POST['empresa_responsavel'] ?? null;
+    $endereco_residuo = $_POST['endereco_residuo'] ?? null;
+    $data_req = $_POST['data_req'] ?? null;
 
+    // Verifica se todos os campos obrigatórios foram preenchidos
+    if (!$tipo_residuo || !$peso || !$empresa_responsavel || !$endereco_residuo || !$data_req || !$user_id) {
+        // Redireciona com um erro caso algum campo esteja vazio
+        header("Location: registerResiduos.php?error=Todos os campos são obrigatórios!");
+        exit();
+    }
 
-    $registredResiduo = $Controller->registerResiduo($tipo_residuo, $peso, $empresa_responsavel, $endereco_residuo, $data_req);
-    $error_code = 0;
+    try {
+        // Prepara o SQL para inserir os dados no banco
+        $sql = "INSERT INTO residuos (tipo_residuo, peso, empresa_responsavel, endereco_residuo, data_req, user_id) 
+                VALUES (:tipo_residuo, :peso, :empresa_responsavel, :endereco_residuo, :data_req, :user_id)";
 
-    if ($registred && $error_code == null) {
-        header("Location: Relatorio.php");
+        // Executa a consulta no banco
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':tipo_residuo' => $tipo_residuo,
+            ':peso' => $peso,
+            ':empresa_responsavel' => $empresa_responsavel,
+            ':endereco_residuo' => $endereco_residuo,
+            ':data_req' => $data_req,
+            ':user_id' => $user_id,  // Aqui você insere o user_id
+        ]);
+
+        // Redireciona para a página com uma mensagem de sucesso
+        header("Location: registerResiduos.php?success=Resíduo cadastrado com sucesso!");
+        exit();
+    } catch (PDOException $e) {
+        // Redireciona em caso de erro com uma mensagem de erro
+        header("Location: registerResiduos.php?error=Erro ao registrar resíduo");
+        exit();
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,7 +56,7 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Reverdecer - registrar residuos</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
@@ -38,24 +67,35 @@ if (!empty($_POST)) {
     </header>
     <section>
         <div>
-            <form method="POST" enctype="multipart/form-data">
-                <select required name="Residuo" placeholder="Tipo do residuo">
-                    <option value="organicos">Organicos</option>
-                    <option value="reciclaveis">Reciclaveis</option>
+            <form method="POST" action="registerResiduos.php">
+                <label for="tipo_residuo">Tipo de Resíduo:</label>
+                <select name="tipo_residuo" required>
+                    <option value="organicos">Orgânicos</option>
+                    <option value="recicláveis">Recicláveis</option>
                     <option value="especiais">Especiais</option>
                     <option value="rejeitos">Rejeitos</option>
                 </select>
-                <input type="number">Peso</input>
-                <input type="number">Empresa responsavel</input>
-                <input type="text">Endereço do residuo</input>
-                <input type="date">Data de requisição de retiramento do residuo</input>
-                <button type="submit">Cadastrar Residuo</button>
+
+                <label for="peso">Peso (kg):</label>
+                <input type="number" step="0.01" name="peso" required>
+
+                <label for="empresa_responsavel">Empresa Responsável:</label>
+                <input type="text" name="empresa_responsavel" required>
+
+                <label for="endereco_residuo">Endereço do Resíduo:</label>
+                <input type="text" name="endereco_residuo" required>
+
+                <label for="data_req">Data de Requisição:</label>
+                <input type="date" name="data_req" required>
+
+                <button type="submit">Cadastrar Resíduo</button>
             </form>
+
         </div>
 
-        
 
-        
+
+
 
 
         <?php
@@ -66,10 +106,10 @@ if (!empty($_POST)) {
             echo $error_code;
         }
         ?>
-        
+
     </section>
 
-    
+
 </body>
 
 </html>

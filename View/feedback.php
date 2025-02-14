@@ -1,15 +1,16 @@
 <?php
-include_once '/../config.php'; 
+include_once '../config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mensagem = ($_POST['mensagem']);
+    $data_envio = date("Y-m-d H:i:s" . ".000000");
 
     if (!empty($mensagem)) {
-        $sql = "INSERT INTO feedbacks";
+        $sql = "INSERT INTO feedbacks (mensagem) VALUES(?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':mensagem', $mensagem);
 
-        if ($stmt->execute()) {
+
+        if ($stmt->execute([$mensagem])) {
             echo "Feedback enviado com sucesso!";
         } else {
             echo "Erro ao enviar o feedback.";
@@ -23,16 +24,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
 </head>
+
 <body>
-    <form action="../index.php" method="POST">
+    <form action="#" method="POST">
         <textarea name="mensagem" required placeholder="Digite seu feedback..."></textarea>
         <br>
         <button type="submit">Enviar Feedback</button>
     </form>
 </body>
+
 </html>

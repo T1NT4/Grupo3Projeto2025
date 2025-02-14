@@ -3,6 +3,8 @@ include_once __DIR__ . "/Controller/UserController.php";
 include_once __DIR__ . "/config.php";
 
 $Controller = new UserController($pdo);
+
+
 ?><!DOCTYPE html>
 <html lang="pt-br">
 
@@ -14,7 +16,11 @@ $Controller = new UserController($pdo);
 </head>
 
 <body>
- 
+<button><a href="view/login.php">login</a></button>
+
+   
 </body>
 
 </html>
+
+
