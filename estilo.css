@@ -10,17 +10,25 @@
 
 html,
 body {
-    height: 100%;
-    width: 100%;
     background-color: #cbceb0;
     font-family: "Itim";
 }
 
 .logo {
-    width: 200px;
-}
-
-
+    width: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo a img{
+    width: 100%;
+    margin-top:10%;
+  }
 nav {
     padding: 20px;
     display: flex;
@@ -48,8 +56,8 @@ nav ul li a {
 }
 
 
-nav a:hover,
-nav a.active {
+nav ul a:hover,
+nav ul a.active {
     border-bottom: 2px solid #427023;
     color: #427023;
     transition: 0.1s;
@@ -112,7 +120,9 @@ main {
 
 .container {
     background-color: #7bad5a;
-    width: 40%;
+    width: 600px;
+    max-width:  90%;
+
     height: auto;
     margin: 0 auto;
     align-items: center;
@@ -128,7 +138,8 @@ main {
 
 
 .inp-login {
-    width: 400px;
+    width: 600px;
+    max-width: 90%;
     height: 30px;
     margin: 0 auto;
     border: none;
@@ -144,7 +155,7 @@ main {
 
 .btn-enter{
     width: 100px;
-    height: 30px;
+    height: 40px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     background: none;
@@ -161,8 +172,24 @@ main {
 
 #usericon{
     position: relative;
+    left: -25px;
+    z-index: 221;
 }
 
+#paswicon{
+    position: relative;
+    left: -25px;
+    z-index: 221;
+}
+
+.relatoricont{
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    display: flex;
+}
 
 
 @media (max-width: 700px) {
@@ -193,6 +220,67 @@ main {
 
     }
 
+    .logo {
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .logo a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .logo a img{
+        width: 100%;
+        margin-top:10%;
+      }
+
+      main {
+        align-items: center;
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        display: flex;
+    
+    }
+    
+    .image {
+        width: 200px;
+    }
+    
+    .inp-senha{
+        width: 400px;
+        height: 30px;
+        margin: 0 auto;
+        border: none;
+    }
+    
+    .btn-enter{
+        width: 100px;
+        height: 40px;
+        border: 2px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        background: none;
+    }
+    
+    .btn-enter P{
+        color: #fff;
+    }
+    
+    #usericon{
+        position: relative;
+        left: -25px;
+        z-index: 221;
+    }
+    
+    #paswicon{
+        position: relative;
+        left: -25px;
+        z-index: 221;
+    }
+    
 
 
 }
