@@ -17,6 +17,7 @@ $Controller = new UserController($pdo);
 
 <body>
 <button><a href="view/login.php">login</a></button>
+<button><a href="view/user.php">Tela do Usuario</a></button>
 
    
 </body>

@@ -29,6 +29,7 @@ try {
     </style>
 </head>
 <body>
+<button><a href="../index.php">Voltar para tela inicial</a></button>
     <h2>Relatório de Usuários e Resíduos</h2>
 
     <table>

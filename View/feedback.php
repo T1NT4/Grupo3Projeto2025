@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+<button><a href="../index.php">Voltar para tela inicial</a></button>
     <form action="#" method="POST">
         <textarea name="mensagem" required placeholder="Digite seu feedback..."></textarea>
         <br>
