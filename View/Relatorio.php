@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             <?php if (!empty($resultados)): ?>
-                <?php foreach ($resultados as $row): ?>
+                <?php foreach ($resultados as $resultados): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['id']) ?></td>
                         <td><?= htmlspecialchars($row['nome']) ?></td>
