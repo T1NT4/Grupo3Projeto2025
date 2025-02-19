@@ -63,7 +63,11 @@ nav ul li a {
     color: var(--cor-secundaria);
     font-size: 20px;
 }
+nav ul li:hover a{
+    text-decoration: underline !important;
+    color: var(--cor-terciaria);
 
+}
 .menu-icon {
     display: none;
 }
@@ -75,14 +79,17 @@ nav ul li a {
     justify-content: space-between;
     padding: 10px;
     gap: 20px;
-    text-decoration: none;
 }
-
+a:has(button){
+    text-decoration: none !important;
+}
 .btn-login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
-    text-decoration: none;
     width: 100px;
-    height: 45px;
+    height: 35px;
     border-radius: 50px;
     font-size: 20px;
     gap: 20px;

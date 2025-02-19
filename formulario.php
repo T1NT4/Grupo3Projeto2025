@@ -10,7 +10,8 @@
 
 <body>
     <?php
-    include __DIR__ . "/header.html";
+    $logado = true;
+    include __DIR__ . "/header.php";
     ?>
     <div class="formular">
 
