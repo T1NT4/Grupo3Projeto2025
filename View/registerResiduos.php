@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([ $user_id, $tipo_residuo, $peso, $empresa_responsavel, $endereco_residuo, $data_req]);
 
         // Redireciona para a página com uma mensagem de sucesso
-        header("Location: registerResiduos.php?success=Resíduo cadastrado com sucesso!");
-        exit("Location: Relatorio.php");
+        header("Location: relatorio.php");
+        exit();
     } catch (PDOException $e) {
         // Redireciona em caso de erro com uma mensagem de erro
         header("Location: registerResiduos.php?error=Erro ao registrar resíduo");
