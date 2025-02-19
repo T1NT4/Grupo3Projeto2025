@@ -133,6 +133,7 @@ nav a.active {
     }
 }
 </style>
+
 <?php
 include_once '../config.php'; // Conexão com o banco
 session_start();
@@ -172,40 +173,38 @@ try {
 <body>
 
 <button><a href="../index.php">Voltar para tela inicial</a></button>
+    <h2>Relatório de Usuários e Resíduos</h2>
 
-<h2>Resíduos cadastrados neste mês (<?= date('F Y') ?>)</h2>
-
-<table>
-    <thead>
-        <tr>
-            <th>Usuário</th>
-            <th>Tipo de Resíduo</th>
-            <th>Peso (kg)</th>
-            <th>Empresa Responsável</th>
-            <th>Endereço do Resíduo</th>
-            <th>Data da Requisição</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (!empty($resultados)): ?>
-            <?php foreach ($resultados as $resultado): ?>
-                <tr>
-                    <td><?= htmlspecialchars($resultado['username']) ?></td>
-                    <td><?= htmlspecialchars($resultado['tipo_residuo']) ?></td>
-                    <td><?= htmlspecialchars($resultado['peso']) ?> kg</td>
-                    <td><?= htmlspecialchars($resultado['empresa_responsavel']) ?></td>
-                    <td><?= htmlspecialchars($resultado['endereco_residuo']) ?></td>
-                    <td><?= htmlspecialchars($resultado['data_req']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
+    <table>
+        <thead>
             <tr>
-                <td colspan="6">Nenhum dado encontrado para este mês.</td>
+                <th>Usuário</th>
+                <th>Tipo de Resíduo</th>
+                <th>Peso (kg)</th>
+                <th>Empresa Responsável</th>
+                <th>Endereço do Resíduo</th>
+                <th>Data da Requisição</th>
             </tr>
-        <?php endif; ?>
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            <?php if (!empty($resultados)): ?>
+                <?php foreach ($resultado as $resultados): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($resultados['username']) ?></td>
+                        <td><?= htmlspecialchars($resultados['tipo_residuo']) ?></td>
+                        <td><?= htmlspecialchars($resultados['peso']) ?> kg</td>
+                        <td><?= htmlspecialchars($resultados['empresa_responsavel']) ?></td>
+                        <td><?= htmlspecialchars($resultados['endereco_residuo']) ?></td>
+                        <td><?= htmlspecialchars($resultados['data_req']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6">Nenhum dado encontrado.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
 </body>
 </html>
 
