@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$db_name = "Reverdecer";
+$db_name = "reverdecer";
 $username = "root";
 $password = "";
 $pdo;
