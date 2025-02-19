@@ -1,138 +1,6 @@
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
-
-
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-
-html,
-body {
-    height: 100%;
-    width: 100%;
-    background-color: #f8f8eb;
-    font-family: 'Itim';
-}
-
-.logo {
-    width: 200px;
-}
-
-
-nav {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #98ca76;
-    position: relative;
-    height: 90px;
-}
-
-nav ul {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-nav ul li {
-    list-style: none;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 20px;
-}
-
-
-nav a:hover,
-nav a.active {
-    border-bottom: 2px solid #427023;
-    color: #427023;
-    transition: 0.1s;
-}
-
-.menu-icon {
-    display: none;
-}
-
-
-.btn-login{
-    display: flex;
-    width: 20%;
-    justify-content: space-between;
-    padding: 10px;
-    gap: 20px;
-    text-decoration: none;
-}
-
-.btn-login button{
-    border: none;
-    text-decoration: none;
-    width: 100px;
-    height: 45px;
-    border-radius: 20px;
-    font-size: 15px;
-    gap: 20px;
-}
-
-.login-btn button{
-    background-color: #5699299a;
-    color: #fff;
-    font-family: "Itim";
-}
    
-
-
-.login-btn button:hover{
-    background-color:  #fff;
-    color: #569929;
-}
-
-
-.enter-btn button{
-    background-color: #56992900;
-    border: 2px solid #fff;
-    color: #fff;
-    font-family: "Itim";
-}
-
-
-@media (max-width: 700px) {
-
-    nav ul {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        text-align: center;
-        background-color: #98ca76;
-        gap: 0;
-        overflow: hidden;
-    }
-
-    nav ul li {
-        padding: 20px;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-
-    .menu-icon i {
-        color: #fff;
-        font-size: 28px;
-       
-    }
-}
-</style>
 
 <?php
 include_once '../config.php'; // Conexão com o banco
@@ -166,7 +34,7 @@ try {
 </head>
 <body>
 <button><a href="../index.php">Voltar para tela inicial</a></button>
-    <h2>Relatório de Usuários e Resíduos</h2>
+    <h2 class="titulo">Relatório</h2>
 
     <table>
         <thead>
@@ -198,5 +66,6 @@ try {
             <?php endif; ?>
         </tbody>
     </table>
+</style>
 </body>
 </html>
