@@ -133,19 +133,24 @@ nav a.active {
     }
 }
 </style>
-
 <?php
 include_once '../config.php'; // Conexão com o banco
 session_start();
+
+// Obtém o mês e ano atual
+$dataAtual = date('Y-m') . '%'; // Exemplo: "2024-02%"
+
 try {
+    // Query para buscar registros do mesmo mês e ano atual
     $sql = "SELECT u.username, r.tipo_residuo, r.peso, r.empresa_responsavel, 
                    r.endereco_residuo, r.data_req 
             FROM residuos r
             JOIN users u ON r.user_id = u.id
+            WHERE r.data_req LIKE ?
             ORDER BY r.data_req DESC";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$dataAtual]); // Passando diretamente no execute()
     $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Erro ao buscar os dados: " . $e->getMessage());
@@ -157,7 +162,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Usuários e Resíduos</title>
+    <title>Registros do Mês Atual</title>
     <style>
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
@@ -165,38 +170,42 @@ try {
     </style>
 </head>
 <body>
-<button><a href="../index.php">Voltar para tela inicial</a></button>
-    <h2>Relatório de Usuários e Resíduos</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Usuário</th>
-                <th>Tipo de Resíduo</th>
-                <th>Peso (kg)</th>
-                <th>Empresa Responsável</th>
-                <th>Endereço do Resíduo</th>
-                <th>Data da Requisição</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($resultados)): ?>
-                <?php foreach ($resultado as $resultados): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($resultados['username']) ?></td>
-                        <td><?= htmlspecialchars($resultados['tipo_residuo']) ?></td>
-                        <td><?= htmlspecialchars($resultados['peso']) ?> kg</td>
-                        <td><?= htmlspecialchars($resultados['empresa_responsavel']) ?></td>
-                        <td><?= htmlspecialchars($resultados['endereco_residuo']) ?></td>
-                        <td><?= htmlspecialchars($resultados['data_req']) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
+<button><a href="../index.php">Voltar para tela inicial</a></button>
+
+<h2>Resíduos cadastrados neste mês (<?= date('F Y') ?>)</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Tipo de Resíduo</th>
+            <th>Peso (kg)</th>
+            <th>Empresa Responsável</th>
+            <th>Endereço do Resíduo</th>
+            <th>Data da Requisição</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($resultados)): ?>
+            <?php foreach ($resultados as $resultado): ?>
                 <tr>
-                    <td colspan="6">Nenhum dado encontrado.</td>
+                    <td><?= htmlspecialchars($resultado['username']) ?></td>
+                    <td><?= htmlspecialchars($resultado['tipo_residuo']) ?></td>
+                    <td><?= htmlspecialchars($resultado['peso']) ?> kg</td>
+                    <td><?= htmlspecialchars($resultado['empresa_responsavel']) ?></td>
+                    <td><?= htmlspecialchars($resultado['endereco_residuo']) ?></td>
+                    <td><?= htmlspecialchars($resultado['data_req']) ?></td>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="6">Nenhum dado encontrado para este mês.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+
 </body>
 </html>
+
