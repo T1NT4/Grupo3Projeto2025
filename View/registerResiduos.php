@@ -23,28 +23,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // Prepara o SQL para inserir os dados no banco
         $sql = "INSERT INTO residuos (user_id, tipo_residuo, peso, empresa_responsavel, endereco_residuo, data_req)
-                VALUES ( :user_id,:tipo_residuo, :peso, :empresa_responsavel, :endereco_residuo, :data_req)";
+                VALUES (? , ?, ?, ?, ?, ?)";
 
         // Executa a consulta no banco
         
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':user_id' => $user_id,
-            ':tipo_residuo' => $tipo_residuo,
-            ':peso' => $peso,
-            ':empresa_responsavel' => $empresa_responsavel,
-            ':endereco_residuo' => $endereco_residuo,
-            ':data_req' => $data_req,
-             
-        ]);
+        $stmt->execute([ $user_id, $tipo_residuo, $peso, $empresa_responsavel, $endereco_residuo, $data_req]);
 
         // Redireciona para a página com uma mensagem de sucesso
         header("Location: registerResiduos.php?success=Resíduo cadastrado com sucesso!");
-        exit();
+        exit("Location: Relatorio.php");
     } catch (PDOException $e) {
         // Redireciona em caso de erro com uma mensagem de erro
         header("Location: registerResiduos.php?error=Erro ao registrar resíduo");
         exit();
+        
     }
     
 }
