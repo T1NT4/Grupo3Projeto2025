@@ -12,23 +12,11 @@
 
 <body>
 
-    <nav>
+    
+    <?php
+    include __DIR__ . "/header.html";
+    ?>
 
-        <div class="logo">
-            <a href="" class="logo"><img src="IMG/logo.png" alt="" class="logo"></a>
-        </div>
-
-        <ul id="menuList">
-            <li><a href="" class="active">Home</a></li>
-            <li><a href="">Registro dos résiduos</a></li>
-            <li><a href="">Relatório</a></li>
-        </ul>
-
-        <div class="menu-icon">
-            <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
-        </div>
-
-    </nav>
     <script>
         let menuList = document.getElementById("menuList")
         menuList.style.maxHeight = "0px";

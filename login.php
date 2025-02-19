@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -11,27 +11,9 @@
 </head>
 
 <body>
-
-    <nav>
-
-        <div class="logo">
-            <a href="" class="logo"><img src="IMG/logo.png" alt="" class="logo"></a>
-        </div>
-
-        <ul id="menuList">
-
-            <div class="btn-login">
-                <a href="" class="login-btn"><button>LOGIN</button></a>
-                <a href="" class="enter-btn"><button>ENTER</button></a>
-            </div>
-
-        </ul>
-
-        <div class="menu-icon">
-            <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
-        </div>
-
-    </nav>
+    <?php
+    include __DIR__."/header.html"
+    ?>
     <script>
         let menuList = document.getElementById("menuList")
         menuList.style.maxHeight = "0px";
