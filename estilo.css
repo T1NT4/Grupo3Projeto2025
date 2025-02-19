@@ -125,7 +125,7 @@ main {
 .container {
     background-color: var(--cor-primaria);
     width: 600px;
-    max-width:  90%;
+    max-width:  90vw;
     height: auto;
     margin: 0 auto;
     align-items: center;
@@ -206,13 +206,13 @@ main {
     border-radius: 25px;
     font-family: 'itim';
     width: 900px;
-    max-width: 90%;
+    max-width: 90vw;
     height: 500px;
     align-items: center;
 }
 .form.registrar{
     display: grid;
-    grid-template-columns: 80px 600px 10px;
+    grid-template-columns: 8fr 60fr 1fr;
 }
 .form.registrar label{
     text-align: right;
@@ -241,7 +241,6 @@ main {
     justify-content: center;
     align-items: center;
     justify-content: center;
-    min-height: 80vh;
     display: flex;
 }
 
@@ -287,30 +286,65 @@ button{
 
     nav ul {
         position: absolute;
+        width: 200px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
         top: 70px;
-        left: 0;
         right: 0;
         flex-direction: column;
         text-align: center;
         background-color: #98ca76;
         gap: 0;
         overflow: hidden;
+        border-radius: 20px;
+        transition: max-height 0.2s ease-out;
+        box-shadow: 0 7px 5px rgba(0, 0, 0, 0.05);
     }
-
+    nav:has(.menulist[style="max-height: 300px;"]) div i{
+        rotate:90deg;
+    } 
     nav ul li {
         padding: 20px;
     }
-
+    div i{
+        transition: rotate 0.2s ease-out;
+    }
+    #hamburger{
+        width:25px;
+        height:25px;
+        user-select: none;
+        cursor: pointer;
+    }
+    #hamburger p{
+        font-family: monospace;
+        font-size: 41px;
+        width: 0px;
+        height: 0px;
+        margin-top: -150%;
+        opacity: 0;
+        color: var(--cor-secundaria)
+    }
+    #hamburger[style="rotate: 180deg;"] p{
+        opacity: 1;
+    }
+    #hamburger[style="rotate: 180deg;"]::before{
+        opacity: 0;
+    }
     .menu-icon {
         display: block;
     }
 
     .menu-icon i {
-        color: #fff;
+        color: var(--cor-secundaria);
         font-size: 28px;
 
     }
-
+    .btn-login{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+    }
     .logo {
         width: 200px;
         display: flex;

@@ -25,7 +25,7 @@
     </ul>
     <?php } ?>
     <div class="menu-icon">
-        <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+        <i id="hamburger" class="fa-solid fa-bars" onclick="toggleMenu()"> <p>X</p></i>
     </div>
 
 </nav>
