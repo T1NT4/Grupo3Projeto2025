@@ -188,7 +188,7 @@ try {
         </thead>
         <tbody>
             <?php if (!empty($resultados)): ?>
-                <?php foreach ($resultado as $resultados): ?>
+                <?php foreach ($resultados as $resultado): ?>
                     <tr>
                         <td><?= htmlspecialchars($resultados['username']) ?></td>
                         <td><?= htmlspecialchars($resultados['tipo_residuo']) ?></td>
