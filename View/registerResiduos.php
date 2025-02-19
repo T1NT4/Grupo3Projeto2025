@@ -1,9 +1,11 @@
 <?php
 include_once '../config.php'; // Certifique-se de que está pegando o arquivo corretamente
 
-// Verifique se o usuário está logado e se a sessão do usuário existe
-session_start();
-$user_id = $_SESSION['user_id'] ?? null;  // Garantir que user_id é recuperado da sessão
+if(!isset($_COOKIE['id_user'])){
+    header("Location: Index.php");
+}
+
+$user_id = $_COOKIE['id_user'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Coleta os dados enviados via POST

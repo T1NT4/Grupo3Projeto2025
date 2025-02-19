@@ -16,9 +16,11 @@ $Controller = new UserController($pdo);
 </head>
 
 <body>
+    <?php if(!isset($_COOKIE['id_user'])) {?>
 <button><a href="View/login.php">login</a></button>
+<?php }else{?>
 <button><a href="View/user.php">Tela do Usuario</a></button>
-
+<?php }?>
    
 </body>
 

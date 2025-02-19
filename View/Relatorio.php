@@ -136,19 +136,25 @@ nav a.active {
 
 <?php
 include_once '../config.php'; // Conexão com o banco
-session_start();
+
+if(!isset($_COOKIE['id_user'])){
+    header("Location: Index.php");
+}
+
+$user_id = $_COOKIE['id_user'];
 
 // Obtém o mês e ano atual
-$dataAtual = date('%Y-m%'); // Exemplo: "%2024-02%"
+$dataAtual = date('%Y-m%'); // Exemplo: "%2024-02%" 
 try {
     // Query para buscar registros do mesmo mês e ano atual
     $sql = "SELECT * 
             FROM residuos
-            WHERE data_req LIKE ?
+            WHERE data_req LIKE ? AND
+            user_id = ? 
             ORDER BY data_req DESC";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$dataAtual]); // Passando diretamente no execute()
+    $stmt->execute([$dataAtual, $user_id]); // Passando diretamente no execute()
     $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Erro ao buscar os dados: " . $e->getMessage());

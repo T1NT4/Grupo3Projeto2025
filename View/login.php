@@ -11,13 +11,9 @@ if (!empty($_POST)) {
 
     $logged_in = $Controller->login($username, $password);
 
-    $_SESSION['user_id'] = $logged_in["id"];
-
     if (!empty($logged_in)) {
-       
-
-
-        header("Location: ../index.php");
+        setcookie("id_user", $logged_in["id"], time()+60*60*24, "/");
+        header("Location: user.php");
     }
 }
 ?>
