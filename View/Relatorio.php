@@ -188,14 +188,14 @@ try {
         </thead>
         <tbody>
             <?php if (!empty($resultados)): ?>
-                <?php foreach ($resultado as $resultados): ?>
+                <?php foreach ($resultados as $resultado): ?>
                     <tr>
-                        <td><?= htmlspecialchars($resultados['username']) ?></td>
-                        <td><?= htmlspecialchars($resultados['tipo_residuo']) ?></td>
-                        <td><?= htmlspecialchars($resultados['peso']) ?> kg</td>
-                        <td><?= htmlspecialchars($resultados['empresa_responsavel']) ?></td>
-                        <td><?= htmlspecialchars($resultados['endereco_residuo']) ?></td>
-                        <td><?= htmlspecialchars($resultados['data_req']) ?></td>
+                        <td><?= htmlspecialchars($resultado['username']) ?></td>
+                        <td><?= htmlspecialchars($resultado['tipo_residuo']) ?></td>
+                        <td><?= htmlspecialchars($resultado['peso']) ?> kg</td>
+                        <td><?= htmlspecialchars($resultado['empresa_responsavel']) ?></td>
+                        <td><?= htmlspecialchars($resultado['endereco_residuo']) ?></td>
+                        <td><?= htmlspecialchars($resultado['data_req']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
