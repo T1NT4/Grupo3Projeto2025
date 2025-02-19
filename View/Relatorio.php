@@ -200,6 +200,7 @@ try {
             <?php endif; ?>
         </tbody>
     </table>
+    <button><a href="registerResiduos.php">Registrar Residuos</a></button>
 </body>
 </html>
 
