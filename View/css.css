@@ -137,15 +137,17 @@ nav a.active {
    margin-top: 25px;
 }
 .colunas{
-    background-color: green;
+    background-color: #80af5e;
     color: white;
     
 }
 th {
-    border: 2px solid black;
+    border: 1px solid black;
+    background-color:#7fac5d;
 }
 
 td {
-    border: 2px solid black;
+    border: 1px solid black;
     text-align: justify;
+    background-color:#d2e7ba ;
 }
