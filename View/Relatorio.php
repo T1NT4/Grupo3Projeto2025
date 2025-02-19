@@ -5,7 +5,7 @@ try {
     $sql = "SELECT u.username, r.tipo_residuo, r.peso, r.empresa_responsavel, 
                    r.endereco_residuo, r.data_req 
             FROM residuos r
-            JOIN users u ON r.user_id = u.id
+            JOIN users u ON id = u.id
             ORDER BY r.data_req DESC";
 
     $stmt = $pdo->prepare($sql);
