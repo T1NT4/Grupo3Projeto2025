@@ -139,16 +139,13 @@ include_once '../config.php'; // Conexão com o banco
 session_start();
 
 // Obtém o mês e ano atual
-$dataAtual = date('Y-m') . '%'; // Exemplo: "2024-02%"
-
+$dataAtual = date('%Y-m%'); // Exemplo: "%2024-02%"
 try {
     // Query para buscar registros do mesmo mês e ano atual
-    $sql = "SELECT u.username, r.tipo_residuo, r.peso, r.empresa_responsavel, 
-                   r.endereco_residuo, r.data_req 
-            FROM residuos r
-            JOIN users u ON r.user_id = u.id
-            WHERE r.data_req LIKE ?
-            ORDER BY r.data_req DESC";
+    $sql = "SELECT * 
+            FROM residuos
+            WHERE data_req LIKE ?
+            ORDER BY data_req DESC";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$dataAtual]); // Passando diretamente no execute()
@@ -178,7 +175,6 @@ try {
     <table>
         <thead>
             <tr>
-                <th>Usuário</th>
                 <th>Tipo de Resíduo</th>
                 <th>Peso (kg)</th>
                 <th>Empresa Responsável</th>
@@ -190,7 +186,6 @@ try {
             <?php if (!empty($resultados)): ?>
                 <?php foreach ($resultados as $resultado): ?>
                     <tr>
-                        <td><?= htmlspecialchars($resultado['username']) ?></td>
                         <td><?= htmlspecialchars($resultado['tipo_residuo']) ?></td>
                         <td><?= htmlspecialchars($resultado['peso']) ?> kg</td>
                         <td><?= htmlspecialchars($resultado['empresa_responsavel']) ?></td>
