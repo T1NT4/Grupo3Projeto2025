@@ -204,6 +204,13 @@ try {
                     <td colspan="6">Nenhum dado encontrado.</td>
                 </tr>
             <?php endif; ?>
+            <select name="Mês" required>Relatorio do Mês de <?=  "$Mês" ?>
+                    <option value="Janeiro">Janeiro</option>
+                    <option value="Fevereiro">Fevereiro</option>
+                    <option value="Marco">Março</option>
+                    <option value="Abril">Abril</option>
+                </select>
+                
         </tbody>
     </table>
     <button><a href="registerResiduos.php">Registrar Residuos</a></button>
