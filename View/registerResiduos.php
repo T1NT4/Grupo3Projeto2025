@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data_req = $_POST['data_req'] ?? null;
 
     // Verifica se todos os campos obrigatórios foram preenchidos
-    if (!$tipo_residuo || !$peso || !$empresa_responsavel || !$endereco_residuo || !$data_req || !$user_id) {
+    if (!$user_id || !$tipo_residuo || !$peso || !$empresa_responsavel || !$endereco_residuo || !$data_req) {
         // Redireciona com um erro caso algum campo esteja vazio
         header("Location: registerResiduos.php?error=Todos os campos são obrigatórios!");
         exit();
@@ -22,19 +22,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Prepara o SQL para inserir os dados no banco
-        $sql = "INSERT INTO residuos (tipo_residuo, peso, empresa_responsavel, endereco_residuo, data_req, user_id) 
-                VALUES (:tipo_residuo, :peso, :empresa_responsavel, :endereco_residuo, :data_req, :user_id)";
+        $sql = "INSERT INTO residuos (user_id, tipo_residuo, peso, empresa_responsavel, endereco_residuo, data_req)
+                VALUES ( :user_id,:tipo_residuo, :peso, :empresa_responsavel, :endereco_residuo, :data_req)";
 
         // Executa a consulta no banco
         
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
+            ':user_id' => $user_id,
             ':tipo_residuo' => $tipo_residuo,
             ':peso' => $peso,
             ':empresa_responsavel' => $empresa_responsavel,
             ':endereco_residuo' => $endereco_residuo,
             ':data_req' => $data_req,
-            ':user_id' => $user_id,  // Aqui você insere o user_id
+             
         ]);
 
         // Redireciona para a página com uma mensagem de sucesso
@@ -45,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: registerResiduos.php?error=Erro ao registrar resíduo");
         exit();
     }
+    
 }
 ?>
 

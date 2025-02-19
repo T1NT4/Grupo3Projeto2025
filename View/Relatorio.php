@@ -136,7 +136,7 @@ nav a.active {
 
 <?php
 include_once '../config.php'; // Conexão com o banco
-
+session_start();
 try {
     $sql = "SELECT u.username, r.tipo_residuo, r.peso, r.empresa_responsavel, 
                    r.endereco_residuo, r.data_req 
@@ -181,14 +181,14 @@ try {
         </thead>
         <tbody>
             <?php if (!empty($resultados)): ?>
-                <?php foreach ($resultados as $row): ?>
+                <?php foreach ($resultado as $resultados): ?>
                     <tr>
-                        <td><?= htmlspecialchars($row['username']) ?></td>
-                        <td><?= htmlspecialchars($row['tipo_residuo']) ?></td>
-                        <td><?= htmlspecialchars($row['peso']) ?> kg</td>
-                        <td><?= htmlspecialchars($row['empresa_responsavel']) ?></td>
-                        <td><?= htmlspecialchars($row['endereco_residuo']) ?></td>
-                        <td><?= htmlspecialchars($row['data_req']) ?></td>
+                        <td><?= htmlspecialchars($resultados['username']) ?></td>
+                        <td><?= htmlspecialchars($resultados['tipo_residuo']) ?></td>
+                        <td><?= htmlspecialchars($resultados['peso']) ?> kg</td>
+                        <td><?= htmlspecialchars($resultados['empresa_responsavel']) ?></td>
+                        <td><?= htmlspecialchars($resultados['endereco_residuo']) ?></td>
+                        <td><?= htmlspecialchars($resultados['data_req']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
