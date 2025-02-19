@@ -40,6 +40,7 @@ CREATE TABLE `feedbacks` (
 --
 
 CREATE TABLE `residuos` (
+  `user_id` int(11) NOT NULL,
   `tipo_residuo` enum('organicos','recicláveis','especiais','rejeitos') NOT NULL,
   `peso` float(10,2) NOT NULL,
   `empresa_responsavel` int(11) NOT NULL,
