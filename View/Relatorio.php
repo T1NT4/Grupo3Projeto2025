@@ -140,6 +140,13 @@ include_once '../config.php'; // Conexão com o banco
 if(!isset($_COOKIE['id_user'])){
     header("Location: Index.php");
 }
+if(!empty($_POST)){
+    $mes = $_POST['mes'];
+    $ano = $_POST['ano'];
+}else{
+    $mes = (int)date('m');
+    $ano = (int)date('Y');
+}
 
 $user_id = $_COOKIE['id_user'];
 
@@ -204,13 +211,40 @@ try {
                     <td colspan="6">Nenhum dado encontrado.</td>
                 </tr>
             <?php endif; ?>
-            <select name="Mês" required>Relatorio do Mês de <?=  "$Mês" ?>
-                    <option value="Janeiro">Janeiro</option>
-                    <option value="Fevereiro">Fevereiro</option>
-                    <option value="Marco">Março</option>
-                    <option value="Abril">Abril</option>
-                </select>
+            <label for="mes">Mês do Relatório:</label>
+            <select name="mes">
+                <?php
+                $meses = [
+                    [1, "Janeiro"],
+                    [2, "Fevereiro"],
+                    [3, "Março"],
+                    [4, "Abril"],
+                    [5, "Maio"],
+                    [6, "Junho"],
+                    [7, "Julho"],
+                    [8, "Agosto"],
+                    [9, "Setembro"],
+                    [10, "Outubro"],
+                    [11, "Novembro"],
+                    [12, "Dezembro"]
+                ];
                 
+                echo "<option value='". $meses[$mes-1][0] ."'> ". $meses[$mes-1][1] ."</option>";
+                foreach ($meses as $mesz):?>
+                   <option value="<?=$mesz[0]?>" ><?=$mesz[1]?></option>
+                <?php endforeach; ?>
+            </select>
+            <br>
+            <label for="ano">Ano do Relatório:</label>
+            <select name="ano">
+                <option value="<?=$ano?>"><?=$ano?></option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
         </tbody>
     </table>
     <button><a href="registerResiduos.php">Registrar Residuos</a></button>
