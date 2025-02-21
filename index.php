@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de gerenciamento do registro de resíduos sustentáveis!</title>
+    <title>Sistema de gerenciamento do registro de resíduos sustentáveis! - Reverdecer</title>
     <link rel="stylesheet" href="estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -37,13 +37,16 @@
     <div class="carrossel">
         <div class="slides">
             <div class="slide">
-                <img src="img/QUEM SOMOS NÓS (1).png" alt="Imagem 1">
+                <img src="img/CARROSSEL 1.png" alt="Imagem 1">
             </div>
             <div class="slide">
-                <img src="img/2.png" alt="Imagem 2">
+                <img src="img/CARROSSEL 2.png" alt="Imagem 2">
+            </div>
+            <div class="slide right">
+                <img src="img/CARROSSEL 3.png" alt="Imagem 3">
             </div>
             <div class="slide">
-                <img src="img/3.png" alt="Imagem 3">
+                <img src="img/CARROSSEL 1.png" alt="Imagem 1">
             </div>
         </div>
     </div>
@@ -89,51 +92,10 @@
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-<!-- Rodapé -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <h2>Reverdecer</h2>
-                <p>
-                <h3>Gerenciamento de <br>
-                    resíduos sustentáveis </h3>
-                </p>
-            </div>
-
-            <div class="footer-links">
-                <h2>Links úteis</h2>
-                <ul>
-                    <li>
-                        <h3><a href="#">Sobre nós</a></h3>
-                    </li>
-                    <li>
-                        <h3><a href="#">Serviços</a></h3>
-                    </li>
-                    <li>
-                        <h3><a href="#">Contato</a></h3>
-                    </li>
-                    <li>
-                        <h3><a href="#">Outros</a></h3>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer-contato">
-                <h2>Contato</h2>
-                <h3>+55 (18) 99777-0741</h3>
-                <h3>grupo_03@portalsesisp.org.br</h3>
-                <h3>Rua Felicio Tarabai, 59, Paraguaçu Paulista - SP</h3>   
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>
-                <h3>&copy; 2025 Reverdecer. Todos os direitos reservados.</h3>
-            </p>
-        </div>
-    </footer>
-
-
+    
+    
+<?php
+    include __DIR__."/footer.html";
+    ?>
 </body>
 </html>

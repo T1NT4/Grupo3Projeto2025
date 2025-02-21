@@ -24,6 +24,9 @@
    
       <!-- Thigas vai fazer o listar aqui  -->
   
+<?php
+    include __DIR__."/footer.html";
+    ?>
 </body>
 
 </html>

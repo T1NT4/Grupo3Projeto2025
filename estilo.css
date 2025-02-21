@@ -21,6 +21,11 @@ body {
     background-color: var(--cor-secundaria);
     font-family: "Itim";
 }
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 /* HEADER */
 .logo {
     width: 280px;
@@ -116,11 +121,8 @@ button:hover{
 main {
     align-items: center;
     justify-content: center;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
     display: flex;
-
+  
 }
 
 .container {
@@ -132,10 +134,33 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2%;
+    padding: 25px 10px;
     border-radius: 20px;
 }
+.container.user-page{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
 
+}
+.container.user-page a{
+    width: 70%;
+}
+.container.user-page a button{
+    font-size: 30px;
+    height: unset !important;
+    border-radius: 50000px;
+    color: var(--cor-preta);
+    background-color: var(--cor-secundaria);
+    border:4px solid var(--cor-secundaria);
+}
+.container.user-page a button:hover{
+    background-color: var(--cor-primaria);
+}
+.whitetext{
+  color: var(--cor-secundaria) !important;
+  font-size: 30px;
+}
 .image {
     width: 200px;
 }
@@ -158,8 +183,9 @@ main {
 }
 
 .btn-enter{
-    width: 100px;
+    width: fit-content;
     height: 40px;
+    padding:0 20px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     background: none;
@@ -229,6 +255,35 @@ main {
     border: 4px solid color-mix(in srgb, var(--cor-primaria) 60%, var(--cor-terciaria) 40%);
     background-color: color-mix(in srgb, var(--cor-primaria) 60%, var(--cor-terciaria) 40%);
 }
+input[type="radio"]{
+  appearance: none;
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+  background-color: var(--cor-secundaria);
+  border-radius: 50px;
+  border: 2px solid var(--cor-terciaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+input[type="radio"]::after{
+  content: "";
+  position:absolute;
+  background-color: var(--cor-terciaria);
+  border-radius: 20px;
+  min-width: 8px;
+  min-height: 8px;
+  opacity: 0;
+}
+input[type="radio"]:checked:after{
+  opacity: 1;
+}
+label[for="reciclavel"], label[for="organico"]{
+  cursor: pointer;
+}
 .form1{
 
     display: flex;
@@ -241,8 +296,6 @@ main {
 .formular{
     align-items: center;
     justify-content: center;
-    align-items: center;
-    justify-content: center;
     display: flex;
 }
 
@@ -252,13 +305,19 @@ main {
     text-align: center;
     width: 100%;
     height: 30px;
+    padding:0 15px;
     display: flex;
     gap:5px;
     text-align: center;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
-
+.checkbox div{
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
 button{
     background-color: #ffffff;
     padding:5px 5px 5px;
@@ -268,7 +327,7 @@ button{
     font-size: 15px;
     width: 100%;
     height: 30px;
-
+  cursor: pointer;
 }
 
 .btn-form{
@@ -279,8 +338,8 @@ button{
     background-color: var(--cor-secundaria);
     border: none;
     border-radius: 5px;
+    padding:0 5px
 }
-
 
 /* LANDING PAGE */
 
@@ -338,41 +397,59 @@ h1 {
     margin:20px 0;
     width: 100%;
     overflow: hidden;
+    box-shadow: 0 0 6px rgba(131, 117, 117, 0.75);
   }
   
   .slides {
     display: flex;
-    animation: mover 12s infinite;
+    animation: mover 16s infinite;
   }
   
   .slide {
     min-width: 100%;
-    aspect-ratio: 2/1;
+    aspect-ratio: 2.25/1;
     max-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
-  
+  .slide.right{
+    justify-content: left;
+  }
   .slide img {
-    min-width: 100%;
     height: 100%;
+    width: 100%;
     object-fit: cover;
+  }
+  .slide.right img{
+    object-position: 0% 0;
   }
   
   @keyframes mover {
     0% {
         transform: translateX(0);
     }
+    23.33% {
+        transform: translateX(0);
+    }
     33.33% {
+        transform: translateX(-100%);
+    }
+    56.66% {
         transform: translateX(-100%);
     }
     66.66% {
         transform: translateX(-200%);
     }
+    90%{
+      transform: translateX(-200%);
+    }
+    99.999999999% {
+        transform: translateX(-300%);;
+    }
     100% {
-        transform: translateX(0);
+        transform: translateX(-0%);;
     }
   }
   
@@ -413,12 +490,16 @@ h1 {
     font-size: 60px;
   }
   .footer {
+    margin-top: 50px;
     width: 100%;
     background-color: var(--cor-primaria); 
     padding: 40px 20px;
  }  
  .footer *{
     color: color-mix(in srgb, var(--cor-terciaria) 60%, black 40%);
+ }
+ .footer-bringerdown{
+  flex-grow: 1;
  }
   .footer-container {
     display: flex;
@@ -586,11 +667,7 @@ h1 {
       main {
         align-items: center;
         justify-content: center;
-        align-items: center;
-        justify-content: center;
-        min-height: 80vh;
         display: flex;
-    
     }
     
     .image {

@@ -7,12 +7,15 @@ $Controller = new UserController($pdo);
 if (!empty($_POST)) {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $currentdatetime = new DateTime('now');
+    $data_de_registro = $currentdatetime->format("Y-m-d H:i:s" . ".000000");
 
-    $logged_in = $Controller->login($username, $password);
 
-    if (!empty($logged_in)) {
-        setcookie("id_user", $logged_in["id"], time()+60*60*24, "/");
-        header("Location: user.php");
+    $registred = $Controller->register($username, $password, $data_de_registro);
+    $error_code = 0;
+
+    if ($registred && $error_code == null) {
+        header("Location: login.php");
     }
 }
 ?>
@@ -22,7 +25,7 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN - Reverdecer</title>
+    <title>CADASTRAR USUÁRIO - Reverdecer</title>
     <link rel="stylesheet" href="estilo.css">
     <script defer src="app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -62,22 +65,23 @@ if (!empty($_POST)) {
             </button><br><br>
 
             <button class="btn-enter">
-                <p>LOGIN</p>
+                <p>CADASTRAR CONTA</p>
             </button>
             <br>
             <br>
-            <p>Não tem uma conta? cadastre uma <a class="text-link"href="register.php">aqui!</a></p>
+            <p>Já tem uma conta? Faça login <a class="text-link"href="login.php">aqui!</a></p>
             
             <?php
-            if (isset($logged_in) && empty($logged_in)) {
-                echo "<br> <p>usuário ou senha estão errados, tente novamente!</p>";
-            } else {
-            }
+                if (isset($registred) && !$registred) {
+                    echo "<br><p>esse usuário ja existe! tente outro nome de usuário.</p>";
+                }
+                if (isset($error_code) && $error_code != null) {
+                    echo "<br>".$error_code;
+                }
             ?>
         </form>
     </main>
 
-    
 <?php
     include __DIR__."/footer.html";
     ?>
