@@ -138,7 +138,7 @@ nav a.active {
 include_once '../config.php'; // Conexão com o banco
 
 if(!isset($_COOKIE['id_user'])){
-    header("Location: Index.php");
+    header("Location: ../Index.php");
 }
 if(!empty($_POST)){
     $mes = $_POST['mes'];
@@ -146,12 +146,16 @@ if(!empty($_POST)){
 }else{
     $mes = (int)date('m');
     $ano = (int)date('Y');
+    if ($mes <= 9){
+        $mes = "0$mes";
+    }
 }
 
 $user_id = $_COOKIE['id_user'];
 
 // Obtém o mês e ano atual
-$dataAtual = date('%Y-m%'); // Exemplo: "%2024-02%" 
+$dataAtual = "%$ano-$mes%"; // Exemplo: "%2024-02%" 
+var_dump($dataAtual);
 try {
     // Query para buscar registros do mesmo mês e ano atual
     $sql = "SELECT * 
