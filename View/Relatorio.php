@@ -146,16 +146,16 @@ if(!empty($_POST)){
 }else{
     $mes = (int)date('m');
     $ano = (int)date('Y');
-    if ($mes <= 9){
-        $mes = "0$mes";
-    }
+    
+}
+if ($mes <= 9){
+    $mes = "0$mes";
 }
 
 $user_id = $_COOKIE['id_user'];
 
 // Obtém o mês e ano atual
-$dataAtual = "%$ano-$mes%"; // Exemplo: "%2024-02%" 
-var_dump($dataAtual);
+$dataAtual = "%$ano-$mes%"; // Exemplo: "%2024-02%"
 try {
     // Query para buscar registros do mesmo mês e ano atual
     $sql = "SELECT * 
@@ -215,40 +215,44 @@ try {
                     <td colspan="6">Nenhum dado encontrado.</td>
                 </tr>
             <?php endif; ?>
-            <label for="mes">Mês do Relatório:</label>
-            <select name="mes">
-                <?php
-                $meses = [
-                    [1, "Janeiro"],
-                    [2, "Fevereiro"],
-                    [3, "Março"],
-                    [4, "Abril"],
-                    [5, "Maio"],
-                    [6, "Junho"],
-                    [7, "Julho"],
-                    [8, "Agosto"],
-                    [9, "Setembro"],
-                    [10, "Outubro"],
-                    [11, "Novembro"],
-                    [12, "Dezembro"]
-                ];
-                
-                echo "<option value='". $meses[$mes-1][0] ."'> ". $meses[$mes-1][1] ."</option>";
-                foreach ($meses as $mesz):?>
-                   <option value="<?=$mesz[0]?>" ><?=$mesz[1]?></option>
-                <?php endforeach; ?>
-            </select>
-            <br>
-            <label for="ano">Ano do Relatório:</label>
-            <select name="ano">
-                <option value="<?=$ano?>"><?=$ano?></option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-            </select>
+            <form method="POST">
+                <label for="mes">Mês do Relatório:</label>
+                <select name="mes">
+                    <?php
+                    $meses = [
+                        [1, "Janeiro"],
+                        [2, "Fevereiro"],
+                        [3, "Março"],
+                        [4, "Abril"],
+                        [5, "Maio"],
+                        [6, "Junho"],
+                        [7, "Julho"],
+                        [8, "Agosto"],
+                        [9, "Setembro"],
+                        [10, "Outubro"],
+                        [11, "Novembro"],
+                        [12, "Dezembro"]
+                    ];
+                    
+                    echo "<option value='". $meses[$mes-1][0] ."'> ". $meses[$mes-1][1] ."</option>";
+                    foreach ($meses as $mesz):?>
+                    <option value="<?=$mesz[0]?>" ><?=$mesz[1]?></option>
+                    <?php endforeach; ?>
+                </select>
+                <br>
+                <label for="ano">Ano do Relatório:</label>
+                <select name="ano">
+                    <option value="<?=$ano?>"><?=$ano?></option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+                <br>
+                <button type="submit">Resgatar formulario do Mês.</button>
+            </form>
         </tbody>
     </table>
     <button><a href="registerResiduos.php">Registrar Residuos</a></button>
