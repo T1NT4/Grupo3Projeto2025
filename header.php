@@ -12,8 +12,8 @@
     <ul id="menuList">
 
         <div class="btn-login">
-            <a href="" class="login-btn"><button>LOGIN</button></a>
-            <a href="" class="enter-btn"><button>ENTRAR</button></a>
+            <a href="login.php" class="login-btn"><button>LOGIN</button></a>
+            <a href="cadastrar.php" class="enter-btn"><button>ENTRAR</button></a>
         </div>
 
     </ul>
