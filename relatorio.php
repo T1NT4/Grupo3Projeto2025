@@ -20,9 +20,29 @@
     <script src="headerResponsivo.js"></script>
     <script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"> </script>
 
-
-   
-      <!-- Thigas vai fazer o listar aqui  -->
+    <main class="relatorio">
+        <h2>Relatório</h2>
+        <div class="tabela-relatorio">
+            <div></div>
+            <div class="verde">TIPO</div>
+            <div class="verde">PESO (kg)</div>
+            <div class="verde">EMPRESA RESPONSÁVEL</div>
+            <div class="verde">ENDEREÇO DO RESÍDUO</div>
+            <div class="verde">DATA</div>
+            <div></div>
+            <div></div>
+            <div class="branco">...</div>
+            <div class="branco">...</div>
+            <div class="branco">...</div>
+            <div class="branco">...</div>
+            <div class="branco">././.</div>
+            <div></div>
+            <div class="verde">TOTAL:</div>
+            <div></div>
+            <div class="branco">...</div>
+            <div></div>
+        </div>
+    </main>
   
 <?php
     include __DIR__."/footer.html";
