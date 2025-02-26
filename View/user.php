@@ -12,6 +12,8 @@
 <button><a href="feedback.php">Feedback</a></button>
 <button><a href="../index.php">Voltar para tela inicial</a></button>
 
-
+<?php
+    include __DIR__."/footer.html";
+    ?>
 </body>
 </html>

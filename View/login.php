@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once 'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\Controller\UserController.php';
 include_once 'C:\Turma2\xampp\htdocs\Grupo3Projeto2025\config.php';
 
@@ -60,6 +59,9 @@ if (!empty($_POST)) {
     </section>
 
 
+<?php
+    include __DIR__."/footer.html";
+    ?>
 </body>
 
 </html>

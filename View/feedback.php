@@ -38,6 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
         <button type="submit">Enviar Feedback</button>
     </form>
+<?php
+    include __DIR__."/footer.html";
+    ?>
 </body>
 
 </html>

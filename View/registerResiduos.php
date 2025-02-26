@@ -1,5 +1,6 @@
 <?php
-include_once '../config.php'; // Certifique-se de que está pegando o arquivo corretamente
+include_once __DIR__.'/config.php'; // Certifique-se de que está pegando o arquivo corretamente
+
 
 if(!isset($_COOKIE['id_user'])){
     header("Location: Index.php");
@@ -91,21 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
 
-
-
-
-
-        <?php
-        if (isset($registredResiduo) && !$registredResiduo) {
-            echo "<p>esse residuo ja está cadastrado! tente outro tipo de residuo ou mude suas informações.</p>";
-        }
-        if (isset($error_code) && $error_code != null) {
-            echo $error_code;
-        }
-        ?>
-
     </section>
 
+
+<?php
+    include __DIR__."/footer.html";
+    ?>
 
 </body>
 

@@ -13,5 +13,7 @@ class UserController{
     public function login($username, $password){
         return $this->UserModel->login($username,$password);
     }
-
+    public function getUserFromID($id){
+        return $this->UserModel->getUserFromID($id);
+    }
 }
