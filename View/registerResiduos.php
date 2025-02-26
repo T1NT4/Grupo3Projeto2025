@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__.'/config.php'; // Certifique-se de que está pegando o arquivo corretamente
 
+
 if(!isset($_COOKIE['id_user'])){
     header("Location: Index.php");
 }
@@ -82,6 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="endereco_residuo">Endereço do Resíduo:</label>
                 <input type="text" name="endereco_residuo" required>
 
+                <label for="data_req">Data de Requisição:</label>
+                <input type="date" name="data_req" required>
+
                 <button type="submit">Cadastrar Resíduo</button>
             </form>
 
@@ -94,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
     include __DIR__."/footer.html";
     ?>
+
 </body>
 
 </html>
