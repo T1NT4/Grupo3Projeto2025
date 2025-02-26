@@ -66,16 +66,16 @@ if (!empty($_POST)) {
     <main class="formular">
         <div class="form1">
             <form action="" method="post" class="form registrar">
-                <label for="tipo">Tipo:</label>
+                <label for="tipo_residuo">Tipo:</label>
                 <div class="checkbox">
                     <div>
-                    <input type="radio" id="reciclavel" name="tipo" value="reciclavel" checked required />
+                    <input type="radio" id="reciclavel" name="tipo_residuo" value="reciclável" checked required />
                     <label for="reciclavel">reciclável</label>
                     </div>
                     
                     <div>
-                    <input type="radio" id="organico" name="tipo" value="organico" required />
-                    <label for="organico"> organico </label>
+                    <input type="radio" id="organico" name="tipo_residuo" value="orgânico" required />
+                    <label for="organico"> orgânico </label>
                     </div>
                 </div>
                 <div></div>

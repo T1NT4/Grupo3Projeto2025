@@ -714,11 +714,30 @@ main.relatorio{
   width: 100%;
   max-width:1000px;
 }
+.escolher-mes{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .5rem;
+  gap:.25rem;
+  margin-right: auto;
+  grid-column-start: 2;
+  grid-column-end: 8;
+}
+.escolher-mes div{
+  display: flex;
+  width: 375px;
+  height: 20px;
+}
 .tabela-relatorio{
   display: grid;
-  width: 100%;
+  width: 98%;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0.15em;
+}
+@media (max-width:560px){
+  .tabela-relatorio div{
+    font-size: 13px;
+  }  
 }
 .tabela-relatorio .verde, .tabela-relatorio .branco{
   display: flex;
@@ -733,4 +752,8 @@ main.relatorio{
 }
 .branco{
   background-color: color-mix(in srgb, var(--cor-primaria) 50%, var(--cor-secundaria) 50%);
+}
+.tem-nada{
+  grid-column-start: 2;
+  grid-column-end: 7;
 }
