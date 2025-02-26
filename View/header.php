@@ -6,9 +6,10 @@
     <?php
     if (!isset($logado)){
         $logado = isset($_COOKIE['id_user']);
+        
     }
     ?>
-    <?php if($logado != true) { ?>
+    <?php if($logado != true) {?>
     <ul id="menuList">
 
         <div class="btn-login">
@@ -17,7 +18,15 @@
         </div>
 
     </ul>
-    <?php }else{ ?>
+    <?php }else{
+    require_once __DIR__."/../config.php";
+    require_once __DIR__."/../Controller/UserController.php";
+    
+    $Controller = new UserController($pdo);
+    if(empty($Controller->getUserFromID($_COOKIE['id_user']))){
+        header('Location: logout.php');
+    }    
+    ?>
     <ul id="menuList">
         <li><a href="index.php">Home</a></li>
         <li><a href="user.php">Página do Usuário</a></li>
