@@ -119,8 +119,8 @@ try {
                         <div class="branco"><?= htmlspecialchars(date("d/m/Y", strtotime($resultado['data_req']))) ?></div>
                     <div></div>
                 <?php endforeach; ?>
-                <div class="verde">TOTAL: </div>
                 <div></div>
+                <div class="verde">TOTAL: </div>
                 <div class="branco"><?=$total?> kg</div>
                 <div></div>
             <?php else: ?>
