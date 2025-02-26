@@ -15,7 +15,9 @@
     --cor-terciaria: #529128;
     --cor-preta: #262626;
 }
-
+*::selection{
+  background-color: var(--cor-terciaria);
+}
 html,
 body {
     background-color: var(--cor-secundaria);
@@ -730,6 +732,15 @@ main.relatorio{
 }
 .escolher-mes button{
   border:2px solid var(--cor-terciaria);
+}
+.escolher-mes select{
+  background-color: color-mix(in srgb, var(--cor-primaria) 50%, var(--cor-secundaria) 50%);
+  border:none;
+  color:var(--cor-terciaria);
+  border-radius: 10px;
+}
+.escolher-mes select option:hover{
+  background-color: var(--cor-terciaria);
 }
 .tabela-relatorio{
   display: grid;
