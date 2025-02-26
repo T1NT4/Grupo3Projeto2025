@@ -1,6 +1,8 @@
 <?php
 include_once __DIR__.'/config.php';
-
+if(!isset($_COOKIE['id_user'])){
+    header('Location: index.php');
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mensagem = ($_POST['mensagem']);
     $data_envio = date("Y-m-d H:i:s" . ".000000");
