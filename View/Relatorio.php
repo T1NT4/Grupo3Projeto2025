@@ -10,7 +10,6 @@
     box-sizing: border-box;
 }
 
-
 html,
 body {
     height: 100%;
@@ -22,7 +21,6 @@ body {
 .logo {
     width: 200px;
 }
-
 
 nav {
     padding: 20px;
