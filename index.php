@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de gerenciamento do registro de resíduos sustentáveis! - Reverdecer</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="View/estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
     <?php
-    include __DIR__."/header.php";
+    include __DIR__."/View/header.php";
     ?>
 
     <!--Efeito JAVASCRIPT-->
-    <script src="headerResponsivo.js"></script>
+    <script src="View/headerResponsivo.js"></script>
 
     <script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"> </script>
 
@@ -95,7 +95,7 @@
     
     
 <?php
-    include __DIR__."/footer.html";
+    include __DIR__."/View/footer.html";
     ?>
 </body>
 </html>

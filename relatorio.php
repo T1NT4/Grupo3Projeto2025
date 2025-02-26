@@ -1,5 +1,8 @@
 <?php
-include_once __DIR__.'/config.php'; // Conexão com o banco
+include_once __DIR__.'/config.php';
+include_once __DIR__.'/Controller/ResiduoController.php';
+
+$residuoController = new ResiduoController($pdo);
 
 if(!isset($_COOKIE['id_user'])){
     header("Location: ../Index.php");
@@ -20,20 +23,7 @@ $user_id = $_COOKIE['id_user'];
 
 // Obtém o mês e ano atual
 $dataAtual = "%$ano-$mes%"; // Exemplo: "%2024-02%"
-try {
-    // Query para buscar registros do mesmo mês e ano atual
-    $sql = "SELECT * 
-            FROM residuos
-            WHERE data_req LIKE ? AND
-            user_id = ? 
-            ORDER BY data_req DESC";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$dataAtual, $user_id]); // Passando diretamente no execute()
-    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Erro ao buscar os dados: " . $e->getMessage());
-}
+$resultados = $residuoController->getResiduosPorMes($user_id,$dataAtual);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,7 +32,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RELATÓRIO</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="View/estilo.css">
     <script defer src="app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -51,10 +41,10 @@ try {
 
     
     <?php
-    include __DIR__ . "/header.php";
+    include __DIR__ . "/View/header.php";
     ?>
 
-    <script src="headerResponsivo.js"></script>
+    <script src="View/headerResponsivo.js"></script>
     <script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"> </script>
 
     
@@ -102,27 +92,26 @@ try {
                     </div>
                     <button type="submit">Resgatar formulario do Mês.</button>
             </form>
-            <div></div>
                 <div class="verde">TIPO</div>
                 <div class="verde">PESO (kg)</div>
-                <div class="verde">EMPRESA RESPONSÁVEL</div>
                 <div class="verde">ENDEREÇO DO RESÍDUO</div>
+                <div class="verde">ENDEREÇO DESTINO DO RESÍDUO</div>
                 <div class="verde">DATA</div>
-            <div></div>
-         <?php if (!empty($resultados)): $total = 0; ?>
+                <div class="verde">EMPRESA RESPONSÁVEL</div>
+            <?php if (!empty($resultados)): $total = 0; ?>
                 <?php foreach ($resultados as $resultado): $total += $resultado['peso']?>
-                    <div></div>
+                    
                         <div class="branco"><?= htmlspecialchars($resultado['tipo_residuo']) ?></div>
                         <div class="branco"><?= htmlspecialchars($resultado['peso']) ?> kg</div>
-                        <div class="branco"><?= htmlspecialchars($resultado['empresa_responsavel']) ?></div>
                         <div class="branco"><?= htmlspecialchars($resultado['endereco_residuo']) ?></div>
+                        <div class="branco"><?= htmlspecialchars($resultado['endereco_de_entrega']) ?></div>
                         <div class="branco"><?= htmlspecialchars(date("d/m/Y", strtotime($resultado['data_req']))) ?></div>
-                    <div></div>
+                        <div class="branco"><?= htmlspecialchars($resultado['nome_empresa']) ?></div>
                 <?php endforeach; ?>
-                <div></div>
+                
                 <div class="verde">TOTAL: </div>
                 <div class="branco"><?=$total?> kg</div>
-                <div></div>
+                
             <?php else: ?>
                 <div></div>
                     <div class="branco tem-nada"> Nenhum dado Encontrado    </div>
@@ -132,7 +121,7 @@ try {
     </main>
   
 <?php
-    include __DIR__."/footer.html";
+    include __DIR__."/View/footer.html";
     ?>
 </body>
 

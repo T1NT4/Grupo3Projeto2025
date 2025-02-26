@@ -342,7 +342,6 @@ button{
     border-radius: 5px;
     padding:0 5px
 }
-
 /* LANDING PAGE */
 
 h1 {
@@ -723,8 +722,8 @@ main.relatorio{
   margin-bottom: .5rem;
   gap:.25rem;
   margin-right: auto;
-  grid-column-start: 2;
-  grid-column-end: 8;
+  grid-column-start: 1;
+  grid-column-end: 7;
 }
 .escolher-mes div{
   display: flex;
@@ -746,7 +745,7 @@ main.relatorio{
 .tabela-relatorio{
   display: grid;
   width: 98%;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0.15em;
 }
 @media (max-width:560px){
@@ -770,7 +769,7 @@ main.relatorio{
   background-color: color-mix(in srgb, var(--cor-primaria) 50%, var(--cor-secundaria) 50%);
 }
 .tem-nada{
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 7;
 }
 

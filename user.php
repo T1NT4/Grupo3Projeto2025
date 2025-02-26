@@ -15,16 +15,16 @@ $username = $Controller->getUserFromID($_COOKIE['id_user'])["username"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PÁGINA DO USUÁRIO - Reverdecer</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="View/estilo.css">
     <script defer src="app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
     <?php
-    include __DIR__."/header.php"
+    include __DIR__."/View/header.php"
     ?>
-    <script src="headerResponsivo.js"></script>
+    <script src="View/headerResponsivo.js"></script>
     <script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"> </script>
 
 
@@ -41,7 +41,7 @@ $username = $Controller->getUserFromID($_COOKIE['id_user'])["username"];
     </main>
 
 <?php
-    include __DIR__."/footer.html";
+    include __DIR__."/View/footer.html";
     ?>
 </body>
 

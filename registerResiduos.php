@@ -1,11 +1,18 @@
 <?php
-include_once __DIR__.'/config.php'; // Certifique-se de que está pegando o arquivo corretamente
+include_once __DIR__.'/config.php';
+include_once __DIR__.'/Controller/EmpresasController.php';
+include_once __DIR__.'/Controller/ResiduoController.php';
 
 if(!isset($_COOKIE['id_user'])){
     header("Location: Index.php");
 }
 
 $user_id = $_COOKIE['id_user'];
+
+$empresasController = new EmpresasController($pdo);
+$residuoController = new ResiduoController($pdo);
+
+$empresas = $empresasController->getEmpresas();
 
 if (!empty($_POST)) {
     // Coleta os dados enviados via POST
@@ -23,15 +30,7 @@ if (!empty($_POST)) {
     }
 
     try {
-        // Prepara o SQL para inserir os dados no banco
-        $sql = "INSERT INTO residuos (user_id, tipo_residuo, peso, empresa_responsavel, endereco_residuo, data_req)
-                VALUES (? , ?, ?, ?, ?, ?)";
-
-        // Executa a consulta no banco
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([ $user_id, $tipo_residuo, $peso, $empresa_responsavel, $endereco_residuo, $data_req]);
-
+        $residuoController->registerResiduo($user_id, $tipo_residuo,$peso,$empresa_responsavel,$endereco_residuo,$data_req);
         // Redireciona para a página com uma mensagem de sucesso
         header("Location: pagina_registro.php");
 
@@ -50,7 +49,7 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="View/estilo.css">
     <title>FORMULÁRIO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -58,10 +57,10 @@ if (!empty($_POST)) {
 <body>
     <?php
     $logado = true;
-    include __DIR__ . "/header.php";
+    include __DIR__ . "/View/header.php";
     ?>
     
-    <script src="headerResponsivo.js"></script>
+    <script src="View/headerResponsivo.js"></script>
     
     <main class="formular">
         <div class="form1">
@@ -93,7 +92,11 @@ if (!empty($_POST)) {
                 <div></div>
                 
                 <label for="descricao">Empresa Responsável:</label>
-                <input type="text" name="empresa_responsavel" class="btn-form" required>
+                <select type="text" name="empresa_responsavel" class="btn-form" required>
+                    <?php foreach ($empresas as $empresa):?>
+                        <option value="<?=$empresa["empresa_id"]?>" ><?="$empresa[nome_empresa] - $empresa[endereco_de_entrega]"?></option>
+                    <?php endforeach; ?>
+                </select>
                 <div></div>
                 
                 <button type="submit">Registrar</button>
@@ -103,7 +106,7 @@ if (!empty($_POST)) {
     </main>  
     
 <?php
-    include __DIR__."/footer.html";
+    include __DIR__."/View/footer.html";
     ?>
 </body>
 
