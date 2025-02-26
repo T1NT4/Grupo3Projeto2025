@@ -63,7 +63,10 @@ if (!empty($_POST)) {
         </p>
     </section>
 
-    
+   
+<?php
+    include __DIR__."/footer.html";
+    ?>
 </body>
 
 </html>

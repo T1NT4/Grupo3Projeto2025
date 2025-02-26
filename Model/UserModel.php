@@ -27,4 +27,11 @@ class UserModel{
         $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
         return $stmt;
     }
+    public function getUserFromID($id){
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+        $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
+    }
 }

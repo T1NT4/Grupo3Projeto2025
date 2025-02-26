@@ -256,6 +256,9 @@ try {
         </tbody>
     </table>
     <button><a href="registerResiduos.php">Registrar Residuos</a></button>
+<?php
+    include __DIR__."/footer.html";
+    ?>
 </body>
 </html>
 
