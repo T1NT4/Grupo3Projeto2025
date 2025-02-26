@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/02/2025 às 16:57
+-- Tempo de geração: 26/02/2025 às 19:05
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `empresas`
+--
+
+CREATE TABLE `empresas` (
+  `empresa_id` int(11) NOT NULL,
+  `nome_empresa` varchar(255) NOT NULL,
+  `endereco_de_entrega` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `empresas`
+--
+
+INSERT INTO `empresas` (`empresa_id`, `nome_empresa`, `endereco_de_entrega`) VALUES
+(1, 'EcoTrans', 'R. Horácio Vergueiro Rudge, 157 - Casa Verde, São Paulo - SP'),
+(2, 'Cia Ambiental', 'Rua Sem Nome, nº 1000 Saída da Rua Três Cruzes Próximo ao Nº 718 - Vila Queiroz, São Paulo - SP'),
+(3, 'Tech Eco', 'Av. Cel. Sezefredo Fagundes, 15555 - Jardim das Pedras, São Paulo - SP'),
+(4, 'Transresíduos Ambiental S/A.', 'R. William Booth, 537 - Boqueirão, Curitiba - PR');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `feedbacks`
 --
 
@@ -32,13 +54,6 @@ CREATE TABLE `feedbacks` (
   `mensagem` text NOT NULL,
   `data_envio` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Despejando dados para a tabela `feedbacks`
---
-
-INSERT INTO `feedbacks` (`id`, `mensagem`, `data_envio`) VALUES
-(1, 'gui bunito', '2025-02-19 13:07:32');
 
 -- --------------------------------------------------------
 
@@ -49,24 +64,12 @@ INSERT INTO `feedbacks` (`id`, `mensagem`, `data_envio`) VALUES
 CREATE TABLE `residuos` (
   `residuo_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `tipo_residuo` enum('orgânico', 'reciclável') NOT NULL,
+  `tipo_residuo` enum('orgânico','reciclável') NOT NULL,
   `peso` float(10,2) NOT NULL,
-  `empresa_responsavel` varchar(255) NOT NULL,
+  `empresa_id` int(11) NOT NULL,
   `endereco_residuo` varchar(255) NOT NULL,
   `data_req` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Despejando dados para a tabela `residuos`
---
-
-INSERT INTO `residuos` (`residuo_id`, `user_id`, `tipo_residuo`, `peso`, `empresa_responsavel`, `endereco_residuo`, `data_req`) VALUES
-(1, 0, 'organicos', 50.00, '0', 'fereiro', '2025-02-18'),
-(4, 0, 'organicos', 50.00, '0', 'fereiro', '2025-02-03'),
-(5, 1, 'organicos', 225.14, '0', 'fereiro', '2025-02-11'),
-(6, 1, 'organicos', 20000.00, 'john', 'rio de janeiro', '2025-02-18'),
-(7, 1, 'organicos', 300.00, 'thiago.inc', 'rio de janeiro', '2024-09-19'),
-(8, 1, 'organicos', 24124.00, 'thiadwe', 'rio de janeiro', '2024-11-27');
 
 -- --------------------------------------------------------
 
@@ -82,15 +85,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Despejando dados para a tabela `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `data_de_registro`) VALUES
-(1, 'thiago', '1234', '2025-02-07 17:58:05');
-
---
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices de tabela `empresas`
+--
+ALTER TABLE `empresas`
+  ADD PRIMARY KEY (`empresa_id`);
 
 --
 -- Índices de tabela `feedbacks`
@@ -116,22 +118,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de tabela `empresas`
+--
+ALTER TABLE `empresas`
+  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de tabela `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `residuos`
 --
 ALTER TABLE `residuos`
-  MODIFY `residuo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `residuo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
