@@ -471,7 +471,7 @@ h1 {
     font-size: large;
     text-align: justify;
     width: 400px;
-    background-color: #ffffffb4;
+    background-color: color-mix(in srgb, var(--cor-secundaria) 50%, white 50%);;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(131, 117, 117, 0.582);
     padding: 20px;
