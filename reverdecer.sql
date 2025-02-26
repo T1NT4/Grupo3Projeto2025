@@ -49,7 +49,7 @@ INSERT INTO `feedbacks` (`id`, `mensagem`, `data_envio`) VALUES
 CREATE TABLE `residuos` (
   `residuo_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `tipo_residuo` enum('organicos','recicláveis','especiais','rejeitos') NOT NULL,
+  `tipo_residuo` enum('orgânico', 'reciclável') NOT NULL,
   `peso` float(10,2) NOT NULL,
   `empresa_responsavel` varchar(255) NOT NULL,
   `endereco_residuo` varchar(255) NOT NULL,
