@@ -20,9 +20,9 @@
     <?php }else{ ?>
     <ul id="menuList">
         <li><a href="index.php">Home</a></li>
+        <li><a href="user.php">Página do Usuário</a></li>
         <li><a href="registerResiduos.php">Registro dos résiduos</a></li>
         <li><a href="relatorio.php">Relatório</a></li>
-        <li><a href="user.php">Página do Usuário</a></li>
     </ul>
     <?php } ?>
     <div class="menu-icon">

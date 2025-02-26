@@ -33,12 +33,12 @@ if (!empty($_POST)) {
         $stmt->execute([ $user_id, $tipo_residuo, $peso, $empresa_responsavel, $endereco_residuo, $data_req]);
 
         // Redireciona para a página com uma mensagem de sucesso
-        header("Location: relatorio.php");
-        exit();
+        header("Location: pagina_registro.php");
+
     } catch (PDOException $e) {
         // Redireciona em caso de erro com uma mensagem de erro
-        header("Location: registerResiduos.php?error=Erro ao registrar resíduo");
-        exit();
+        header("Location: registerResiduos.php");
+
         
     }
     

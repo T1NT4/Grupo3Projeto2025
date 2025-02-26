@@ -319,7 +319,7 @@ label[for="reciclavel"], label[for="organico"]{
   align-items: center;
 }
 button{
-    background-color: #ffffff;
+    background-color: var(--cor-secundaria);
     padding:5px 5px 5px;
     border: none;
     border-radius: 20px;
@@ -728,6 +728,9 @@ main.relatorio{
   width: 375px;
   height: 20px;
 }
+.escolher-mes button{
+  border:2px solid var(--cor-terciaria);
+}
 .tabela-relatorio{
   display: grid;
   width: 98%;
@@ -746,6 +749,7 @@ main.relatorio{
   min-height: 40px;
   padding:10px;
   text-align: center;
+  border-radius: 5px;
 }
 .verde{
   background-color: color-mix(in srgb, var(--cor-terciaria) 20%, var(--cor-primaria) 80%);
@@ -756,4 +760,47 @@ main.relatorio{
 .tem-nada{
   grid-column-start: 2;
   grid-column-end: 7;
+}
+
+/* página de confirmação do registro */
+.aviso{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin:0 auto;
+  text-align: center;
+  gap: 0.5rem;
+}
+.aviso h2{
+  font-size: 35px;
+}
+.aviso div:has(.gerar-relatorio){
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+  justify-content: center;
+}
+.aviso .gerar-relatorio{
+  background-color: var(--cor-primaria);
+  font-size: 30px;
+  height: fit-content;
+  max-width: 500px;
+  border-radius: 100000px;
+  padding: 10px 20px;
+}
+/* página de feedback */
+.feedback .whitetext{
+  font-size: 25px;
+}
+.feedback textarea{
+  width: 100%;
+  background-color: var(--cor-secundaria);
+  font-size: 17px;
+  resize: none;
+  border:none;
+  border-radius: 10px;
+  padding: 10px;
+  height: 150px;
+  color:var(--cor-terciaria);
 }
