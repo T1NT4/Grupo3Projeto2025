@@ -40,19 +40,19 @@ if (!empty($_POST)) {
     <main>
 
         <form class="container" method="POST">
-
+            <h2>Login</h2>
             <img src="IMG/Black_White_Minimalist_Modern_Aesthetic_Initials_Font_Logo__1_-removebg-preview.png" alt=""
                 class="image">
             <br><br>
 
             <div class="navbarlog">
                 <div class="loguser">
-                    <input type="text" name="username" id="" placeholder="nome do usuário" class="inp-login" required>
+                    <input type="text" name="username" id="" placeholder="Nome de usuário" class="inp-login" required>
                     <span class="fa-solid fa-user" id="usericon"></span>
                 </div>
                 <br>
                 <div class="loguser">
-                    <input type="password" name="password" id="" placeholder="sua senha" class="inp-login" required>
+                    <input type="password" name="password" id="" placeholder="Sua senha" class="inp-login" required>
                     <span class="fa-solid fa-lock" id="paswicon"></span>
              
                 </div>
@@ -70,7 +70,7 @@ if (!empty($_POST)) {
             
             <?php
             if (isset($logged_in) && empty($logged_in)) {
-                echo "<br> <p>usuário ou senha estão errados, tente novamente!</p>";
+                echo "<br> <p class='error'>usuário ou senha estão errados, tente novamente!</p>";
             } else {
             }
             ?>

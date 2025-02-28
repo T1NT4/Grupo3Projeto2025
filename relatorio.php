@@ -5,7 +5,7 @@ include_once __DIR__.'/Controller/ResiduoController.php';
 $residuoController = new ResiduoController($pdo);
 
 if(!isset($_COOKIE['id_user'])){
-    header("Location: ../Index.php");
+    header('Location: index.php');
 }
 if(!empty($_POST)){
     $mes = $_POST['mes'];
@@ -49,7 +49,7 @@ $resultados = $residuoController->getResiduosPorMes($user_id,$dataAtual);
 
     
     <main class="relatorio">
-        <h2>Relatório</h2>
+        <h2>Relatório mensal de resíduos</h2>
         <div class="tabela-relatorio">
             <!-- escolher mes do relatorio -->
             <form method="POST" class="escolher-mes">

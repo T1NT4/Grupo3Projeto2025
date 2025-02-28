@@ -14,7 +14,7 @@
 
         <div class="btn-login">
             <a href="login.php" class="login-btn"><button>LOGIN</button></a>
-            <a href="register.php" class="enter-btn"><button>ENTRAR</button></a>
+            <a href="register.php" class="enter-btn"><button>CADASTRAR</button></a>
         </div>
 
     </ul>
